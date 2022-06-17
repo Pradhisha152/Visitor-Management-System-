@@ -1,0 +1,94 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2022-06-17 13:19:59.679872",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "scan_qr",
+  "section_break_2",
+  "check_inn",
+  "column_break_3",
+  "check_out",
+  "column_break_5",
+  "dining_inn",
+  "section_break_7",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "scan_qr",
+   "fieldtype": "Data",
+   "label": "Scan qr",
+   "options": "Barcode"
+  },
+  {
+   "default": "0",
+   "fieldname": "check_inn",
+   "fieldtype": "Check",
+   "label": "check inn"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "check_out",
+   "fieldtype": "Check",
+   "label": "check out"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "dining_inn",
+   "fieldtype": "Check",
+   "label": "dining inn"
+  },
+  {
+   "fieldname": "section_break_7",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Scan QR",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2022-06-17 14:35:06.282097",
+ "modified_by": "Administrator",
+ "module": "Visitor Management",
+ "name": "Scan QR",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

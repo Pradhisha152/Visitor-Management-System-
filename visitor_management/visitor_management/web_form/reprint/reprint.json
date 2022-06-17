@@ -1,0 +1,82 @@
+{
+ "accept_payment": 0,
+ "allow_comments": 0,
+ "allow_delete": 0,
+ "allow_edit": 0,
+ "allow_incomplete": 0,
+ "allow_multiple": 0,
+ "allow_print": 0,
+ "amount": 0.0,
+ "amount_based_on_field": 0,
+ "apply_document_permissions": 0,
+ "button_label": "Save",
+ "client_script": "",
+ "creation": "2022-06-17 13:02:43.786691",
+ "currency": "INR",
+ "doc_type": "Reprint",
+ "docstatus": 0,
+ "doctype": "Web Form",
+ "idx": 0,
+ "is_multi_step_form": 0,
+ "is_standard": 1,
+ "login_required": 0,
+ "max_attachment_size": 0,
+ "modified": "2022-06-17 14:47:05.738321",
+ "modified_by": "Administrator",
+ "module": "Visitor Management",
+ "name": "reprint",
+ "owner": "Administrator",
+ "payment_button_label": "Buy Now",
+ "published": 1,
+ "route": "reprint",
+ "route_to_success_link": 0,
+ "show_attachments": 0,
+ "show_in_grid": 0,
+ "show_sidebar": 1,
+ "sidebar_items": [
+  {
+   "enabled": 1,
+   "route": "visitor-management",
+   "title": "Register"
+  },
+  {
+   "enabled": 1,
+   "route": "reprint",
+   "title": "Reprint"
+  },
+  {
+   "enabled": 1,
+   "route": "scan-qr",
+   "title": "Scan QR"
+  }
+ ],
+ "success_url": "/reprint",
+ "title": "Reprint",
+ "web_form_fields": [
+  {
+   "allow_read_on_all_link_options": 0,
+   "fieldname": "mobile_number",
+   "fieldtype": "Data",
+   "hidden": 0,
+   "label": "Mobile Number",
+   "max_length": 0,
+   "max_value": 0,
+   "read_only": 0,
+   "reqd": 0,
+   "show_in_filter": 0
+  },
+  {
+   "allow_read_on_all_link_options": 0,
+   "fieldname": "preview",
+   "fieldtype": "HTML",
+   "hidden": 0,
+   "label": "Preview",
+   "max_length": 0,
+   "max_value": 0,
+   "options": "",
+   "read_only": 0,
+   "reqd": 0,
+   "show_in_filter": 0
+  }
+ ]
+}

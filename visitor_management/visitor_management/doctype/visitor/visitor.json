@@ -13,17 +13,17 @@
   "organization",
   "industry",
   "country",
-  "district",
   "state",
-  "taluk",
-  "amended_from"
+  "district",
+  "amended_from",
+  "taluk_"
  ],
  "fields": [
   {
    "fieldname": "types_of_visitors",
    "fieldtype": "Select",
    "label": "Types of Visitors",
-   "options": "Miller\nGeneral Visitor",
+   "options": "Rice Miller\nExhibitor\nGeneral Visitor",
    "reqd": 1
   },
   {
@@ -42,11 +42,10 @@
    "reqd": 1
   },
   {
-   "depends_on": "eval:doc.types_of_visitors == \"Miller\"",
+   "depends_on": "eval:doc.types_of_visitors == \"Rice Miller\"  \n",
    "fieldname": "industry",
    "fieldtype": "Data",
-   "label": "Industry",
-   "reqd": 1
+   "label": "Industry"
   },
   {
    "default": "India",
@@ -60,15 +59,9 @@
    "default": "Tamil Nadu",
    "fetch_from": "district.state",
    "fieldname": "state",
-   "fieldtype": "Data",
-   "label": "State",
-   "reqd": 1
-  },
-  {
-   "fieldname": "taluk",
    "fieldtype": "Link",
-   "label": "Taluk",
-   "options": "Territory",
+   "label": "State",
+   "options": "State",
    "reqd": 1
   },
   {
@@ -81,24 +74,30 @@
    "read_only": 1
   },
   {
-   "depends_on": "eval:doc.types_of_visitors == \"General Visitor\"",
+   "depends_on": "eval:doc.types_of_visitors == \"General Visitor\" || doc.types_of_visitors == \"Exhibitor\"",
    "fieldname": "organization",
    "fieldtype": "Data",
-   "label": "Organization",
-   "mandatory_depends_on": "eval:doc.types_of_visitors == \"General Visitor\""
+   "label": "Organization"
   },
   {
    "fieldname": "district",
    "fieldtype": "Link",
    "label": "District",
-   "options": "TS State",
+   "options": "District",
+   "reqd": 1
+  },
+  {
+   "fieldname": "taluk_",
+   "fieldtype": "Link",
+   "label": "Taluk_",
+   "options": "Taluk",
    "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-06-16 17:35:59.292954",
+ "modified": "2022-06-17 17:11:01.555561",
  "modified_by": "Administrator",
  "module": "Visitor Management",
  "name": "Visitor",
