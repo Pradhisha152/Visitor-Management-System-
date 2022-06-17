@@ -1,4 +1,5 @@
 {
+ "_liked_by": "[]",
  "accept_payment": 0,
  "allow_comments": 0,
  "allow_delete": 0,
@@ -10,7 +11,7 @@
  "amount_based_on_field": 0,
  "apply_document_permissions": 0,
  "button_label": "Submit",
- "client_script": "frappe.web_form.after_load = () => {\n     frm.page.wrapper.find(\".district\").on(\"click\", function(evt){ \n         frappe.web_form.set_df_property(\"district\", \"options\", [\n\t\t'Ariyalur',\n\t\t'Chennai',\n\t\t'Coimbatore',\n\t\t'Cuddalore',\n\t\t'Dharmapuri',\n\t\t'Dindigul',\n\t\t'Erode',\n\t\t'Kanchipuram',\n\t\t'Kanyakumari',\n\t\t'Karur',\n\t\t'Madurai',\n\t\t'Nagapattinam',\n\t\t'Nilgiris',\n\t\t'Namakkal',\n\t\t'Perambalur',\n\t\t'Pudukkottai',\n\t\t'Ramanathapuram',\n\t\t'Salem',\n\t\t'Sivaganga',\n\t\t'Tirupur',\n\t\t'Tiruchirappalli',\n\t\t'Theni',\n\t\t'Tirunelveli',\n\t\t'Thanjavur',\n\t\t'Thoothukudi',\n\t\t'Tiruvallur',\n\t\t'Tiruvarur',\n\t\t'Tiruvannamalai',\n\t\t'Vellore',\n\t\t'Viluppuram',\n\t\t'Virudhunagar',\n]); \n         refresh_field(\"district\"); \n      });\n};",
+ "client_script": "frappe.web_form.on('country', (field,value) => {\n    frappe.call({\n        method: \"visitor_management.api.get_state\",\n        args: {\n        \"doctype\": \"State\",\n        \"field\": value\n        }, callback: function(r) {\n            frappe.web_form.set_df_property('state', 'options', r.message);\n        }\n    });\n});\nfrappe.web_form.on('state', (field,value) => {\n    frappe.call({\n        method: \"visitor_management.api.get_district\",\n        args: {\n        \"doctype\": \"District\",\n        \"field\": value\n        }, callback: function(r) {\n            frappe.web_form.set_df_property('district', 'options', r.message);\n        }\n    });\n});\nfrappe.web_form.on('district', (field,value) => {\n    frappe.call({\n        method: \"visitor_management.api.get_taluk\",\n        args: {\n        \"doctype\": \"Taluk\",\n        \"field\": value\n        }, callback: function(r) {\n            frappe.web_form.set_df_property('taluk', 'options', r.message);\n        }\n    });\n});\n",
  "creation": "2022-06-16 12:12:46.924515",
  "currency": "INR",
  "doc_type": "Visitor",
@@ -21,7 +22,7 @@
  "is_standard": 1,
  "login_required": 0,
  "max_attachment_size": 0,
- "modified": "2022-06-16 17:51:54.024518",
+ "modified": "2022-06-17 14:12:26.693422",
  "modified_by": "Administrator",
  "module": "Visitor Management",
  "name": "visitor-management",
@@ -32,8 +33,22 @@
  "route_to_success_link": 0,
  "show_attachments": 0,
  "show_in_grid": 0,
- "show_sidebar": 0,
- "sidebar_items": [],
+ "show_sidebar": 1,
+ "sidebar_items": [
+  {
+   "enabled": 1,
+   "reference_doctype": "Web Form",
+   "role": "",
+   "route": "visitor-management",
+   "title": "Registration"
+  },
+  {
+   "enabled": 1,
+   "reference_doctype": "Supplier",
+   "route": "supplier",
+   "title": "Reprint"
+  }
+ ],
  "success_message": "Thank you for visiting us\nQR code will be geneator",
  "success_url": "/visitor-management",
  "title": "Visitor Management",
@@ -118,7 +133,7 @@
   },
   {
    "allow_read_on_all_link_options": 0,
-   "default": "India",
+   "default": "",
    "fieldname": "country",
    "fieldtype": "Link",
    "hidden": 0,
@@ -126,6 +141,19 @@
    "max_length": 0,
    "max_value": 0,
    "options": "Country",
+   "read_only": 0,
+   "reqd": 1,
+   "show_in_filter": 0
+  },
+  {
+   "allow_read_on_all_link_options": 0,
+   "default": "Tamil Nadu",
+   "fieldname": "state",
+   "fieldtype": "Select",
+   "hidden": 0,
+   "label": "State",
+   "max_length": 0,
+   "max_value": 0,
    "read_only": 0,
    "reqd": 1,
    "show_in_filter": 0
@@ -156,27 +184,13 @@
   },
   {
    "allow_read_on_all_link_options": 0,
-   "default": "Tamil Nadu",
-   "fieldname": "state",
-   "fieldtype": "Select",
-   "hidden": 0,
-   "label": "State",
-   "max_length": 0,
-   "max_value": 0,
-   "options": "Andhra Pradesh\nArunachal Pradesh\nAssam\nBihar\nChhattisgarh\nGoa\nGujarat\nHaryana\nHimachal Pradesh\nJharkhand\nKarnataka\nKerala\nMadhya Pradesh\nMaharashtra\nManipur\nMeghalaya\nMizoram\nNagaland\nOdisha\nPunjab\nRajasthan\nSikkim\nTamil Nadu\nTelangana\nTripura\nUttar Pradesh\nUttarakhand\nWest Bengal",
-   "read_only": 0,
-   "reqd": 1,
-   "show_in_filter": 0
-  },
-  {
-   "allow_read_on_all_link_options": 0,
    "fieldname": "taluk",
    "fieldtype": "Select",
    "hidden": 0,
    "label": "Taluk",
    "max_length": 0,
    "max_value": 0,
-   "options": "Territory",
+   "options": "",
    "read_only": 0,
    "reqd": 1,
    "show_in_filter": 0
