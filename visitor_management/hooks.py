@@ -98,7 +98,7 @@ app_license = "MIT"
 doc_events = {
 	"Customer": {
 		"after_insert": "visitor_management.visitor_management.custom.customer.after_save",
-		# "validate":"visitor_management.visitor_management.custom.customer.validate_phone"
+		"validate":"visitor_management.visitor_management.custom.customer.validate_phone"
 	}
 }
 
