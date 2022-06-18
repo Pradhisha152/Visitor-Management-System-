@@ -83,3 +83,14 @@ def send_invoice(mobile_no, link,filename):
     # print("----------------------------")
     print(data)
     # print("////////////////////////////////////")
+
+
+
+def create_member_tracking(event,customer):
+	member=frappe.new_doc("Member Tracking")
+	member.event=event
+	member.customer=customer
+	member.append("member_tracking_details",{"activity_type":"Registration","status":"1"})
+	member.insert()
+	member.save()
+	frappe.db.commit()

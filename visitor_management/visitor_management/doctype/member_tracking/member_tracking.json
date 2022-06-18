@@ -43,6 +43,7 @@
    "options": "\nPrint\nScan"
   },
   {
+   "fetch_from": "customer.whatsapp_number",
    "fieldname": "mobile_number",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -53,7 +54,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-06-18 16:46:32.416881",
+ "modified": "2022-06-18 17:58:02.291871",
  "modified_by": "Administrator",
  "module": "Visitor Management",
  "name": "Member Tracking",
