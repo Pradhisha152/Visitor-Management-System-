@@ -14,7 +14,7 @@
  "is_standard": 1,
  "label": "Registration Desk",
  "links": [],
- "modified": "2022-06-18 16:44:41.135268",
+ "modified": "2022-06-18 17:42:07.434435",
  "modified_by": "Administrator",
  "module": "Visitor Management",
  "name": "Registration Desk",
@@ -41,5 +41,5 @@
    "type": "DocType"
   }
  ],
- "shortcuts_label": "Counter"
+ "shortcuts_label": ""
 }
