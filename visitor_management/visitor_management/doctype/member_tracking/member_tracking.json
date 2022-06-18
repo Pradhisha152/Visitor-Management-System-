@@ -10,8 +10,12 @@
   "event",
   "customer",
   "mobile_number",
+  "customer_group",
   "action",
-  "member_tracking_details"
+  "tracking_details_section",
+  "registration",
+  "checkin",
+  "ts_event"
  ],
  "fields": [
   {
@@ -21,12 +25,6 @@
    "label": "Event",
    "options": "Event",
    "reqd": 1
-  },
-  {
-   "fieldname": "member_tracking_details",
-   "fieldtype": "Table",
-   "label": "Member Tracking Details",
-   "options": "Member Tracking Details"
   },
   {
    "fieldname": "customer",
@@ -43,18 +41,45 @@
    "options": "\nPrint\nScan"
   },
   {
-   "fetch_from": "customer.whatsapp_number",
    "fieldname": "mobile_number",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Mobile Number",
    "read_only": 1,
    "reqd": 1
+  },
+  {
+   "fieldname": "tracking_details_section",
+   "fieldtype": "Section Break",
+   "label": "Tracking Details"
+  },
+  {
+   "default": "0",
+   "fieldname": "registration",
+   "fieldtype": "Check",
+   "label": "Registration"
+  },
+  {
+   "default": "0",
+   "fieldname": "checkin",
+   "fieldtype": "Check",
+   "label": "Checkin"
+  },
+  {
+   "fieldname": "customer_group",
+   "fieldtype": "Link",
+   "label": "Customer Group",
+   "options": "Customer Group"
+  },
+  {
+   "fieldname": "ts_event",
+   "fieldtype": "Data",
+   "label": "Event"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-06-18 17:58:02.291871",
+ "modified": "2022-06-18 18:57:24.322590",
  "modified_by": "Administrator",
  "module": "Visitor Management",
  "name": "Member Tracking",
