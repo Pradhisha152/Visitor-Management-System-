@@ -4,5 +4,5 @@
 # import frappe
 import unittest
 
-class TestRegistrationDesk(unittest.TestCase):
+class TestMemberTracking(unittest.TestCase):
 	pass
