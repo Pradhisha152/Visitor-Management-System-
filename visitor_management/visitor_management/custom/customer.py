@@ -2,8 +2,9 @@ import frappe
 import re
 
 def after_save(doc,action):
-          contact(doc,action)
-          address(doc,action)
+    frappe.set_user('Administrator')
+    contact(doc,action)
+    address(doc,action)
 
 def contact(doc,action):
          
@@ -83,6 +84,7 @@ def whatsapp_number(doc,action):
    if whatsapp_number:
        if not whatsapp_number.isdigit() or len(whatsapp_number) != 10:
            frappe.throw(frappe._("{0} is not a valid WhatsApp Number.").format(whatsapp_number), frappe.InvalidPhoneNumberError)
+
 
 def check(email_ids):
     if(re.fullmatch(regex, email_ids)):

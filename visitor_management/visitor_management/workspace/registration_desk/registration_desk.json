@@ -2,7 +2,7 @@
  "cards_label": "",
  "category": "Modules",
  "charts": [],
- "creation": "2022-06-18 13:07:57.696585",
+ "creation": "2022-06-18 16:10:46.162587",
  "developer_mode_only": 0,
  "disable_user_customization": 1,
  "docstatus": 0,
@@ -12,12 +12,12 @@
  "idx": 0,
  "is_default": 0,
  "is_standard": 1,
- "label": "Register",
+ "label": "Registration Desk",
  "links": [],
- "modified": "2022-06-18 16:06:46.844460",
+ "modified": "2022-06-18 17:42:07.434435",
  "modified_by": "Administrator",
  "module": "Visitor Management",
- "name": "Register",
+ "name": "Registration Desk",
  "owner": "Administrator",
  "pin_to_bottom": 0,
  "pin_to_top": 1,
@@ -33,7 +33,13 @@
    "label": "Point Of Sale",
    "link_to": "point-of-sale",
    "type": "Page"
+  },
+  {
+   "doc_view": "List",
+   "label": "Member Tracking",
+   "link_to": "Member Tracking",
+   "type": "DocType"
   }
  ],
- "shortcuts_label": "Counter"
+ "shortcuts_label": ""
 }

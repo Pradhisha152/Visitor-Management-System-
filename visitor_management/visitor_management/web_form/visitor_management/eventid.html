@@ -1,0 +1,87 @@
+ 
+
+<style>
+    .Header
+    {
+        position: relative;
+        padding-top: -10px;
+      
+        width:100%;
+        height:83px;
+        line-height:1;
+        /*border:1px solid black;*/
+    }
+    
+    .HeadLogo
+    {
+        float:left;
+        padding-top:100px;
+        padding-right:90px;
+          padding-bottom:10px;
+        width:40%;
+        height:30%;
+        /*border:1px solid black;*/
+    }
+     .text {
+            font-size: 5px;
+            padding-left: 60px;
+          }
+    
+    
+    </style>
+    
+    <div class="Header">
+        <div align="right" class="HeadLogo">
+            <img height="70px" src="https://wkstest.thirvusoft.live/files/ricemill.jpg" width="100">
+        </div></div>
+          <div class="text">
+            <h1>TamilNadu Rice Mill Owner Association.</h1>
+          </div>
+          <style>
+            .print-format table, .print-format tr, 
+            .print-format td, .print-format div, .print-format p {
+                line-height: 150%;
+                vertical-align: middle;
+            }
+            @media screen {
+                .print-format {
+                    width: 4in;
+                    padding: 0.25in;
+                    min-height: 8in;
+                }
+            }
+        </style>
+        
+        {% if letter_head %}
+            {{ letter_head }}
+        {% endif %}
+        
+        <p class="text-center" style="margin-bottom: 1rem">
+        
+        </p>
+        <p>
+            <b>{{ _("Name") }}:</b> {{ "name" }}<br>
+            <b>{{ _("Mobile No") }}:</b> {{ doc.owner }}<br>
+            <b>{{ _("ID") }}:</b> {{ doc.customer_name }}<br>
+            <b>{{ _("Area") }}:</b> {{ doc.get_formatted("posting_date") }}<br>
+            <b>{{ _("Event Name") }}:</b> {{ doc.get_formatted("posting_date") }}<br>
+            <b>{{ _("Organisation Name") }}:</b> {{ doc.get_formatted("posting_date") }}<br>
+            
+        </p>
+        
+         <img src=
+        "https://chart.googleapis.com/chart?cht=qr&chl=Hello+World&chs=160x160&chld=L|0/150*150"
+                class="qr-code img-thumbnail img-responsive" />
+        <style>
+         .center {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+          width: 50%;
+        }
+        </style>
+        
+                   
+        
+        <p class="text-center">{{ _("Thank you, please visit again.") }}</p>
+            
