@@ -1,0 +1,51 @@
+{
+ "cards_label": "",
+ "category": "Modules",
+ "charts": [],
+ "creation": "2022-06-18 13:07:57.696585",
+ "developer_mode_only": 0,
+ "disable_user_customization": 1,
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "extends_another_page": 0,
+ "hide_custom": 0,
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "label": "Register",
+ "links": [],
+ "modified": "2022-06-18 15:10:50.684888",
+ "modified_by": "Administrator",
+ "module": "Visitor Management",
+ "name": "Register",
+ "owner": "Administrator",
+ "pin_to_bottom": 0,
+ "pin_to_top": 1,
+ "shortcuts": [
+  {
+   "doc_view": "List",
+   "label": "Customer",
+   "link_to": "Customer",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "Point Of Sale",
+   "link_to": "point-of-sale",
+   "type": "Page"
+  },
+  {
+   "doc_view": "List",
+   "label": "POS Invoices List",
+   "link_to": "POS Invoice",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "Item",
+   "link_to": "Item",
+   "type": "DocType"
+  }
+ ],
+ "shortcuts_label": "Counter"
+}
