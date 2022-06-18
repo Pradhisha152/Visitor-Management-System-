@@ -94,13 +94,12 @@ doctype_js = {"Customer" : "visitor_management/js/customer.js"}
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-#	}
-# }
+doc_events = {
+	"Customer": {
+		"after_insert": "visitor_management.visitor_management.custom.customer.after_save",
+		# "validate":"visitor_management.visitor_management.custom.customer.validate_phone"
+	}
+}
 
 # Scheduled Tasks
 # ---------------
