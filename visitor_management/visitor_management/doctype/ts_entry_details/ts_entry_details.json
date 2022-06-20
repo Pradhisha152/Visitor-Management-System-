@@ -7,6 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "visitor_name",
+  "mobile_no",
   "entry_type",
   "amended_from"
  ],
@@ -31,12 +32,18 @@
    "options": "TS Entry Details",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fetch_from": "visitor_name.mobile_number",
+   "fieldname": "mobile_no",
+   "fieldtype": "Data",
+   "label": "Mobile No"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-06-17 15:58:30.741672",
+ "modified": "2022-06-20 09:37:20.465971",
  "modified_by": "Administrator",
  "module": "Visitor Management",
  "name": "TS Entry Details",

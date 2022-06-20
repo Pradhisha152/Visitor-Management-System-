@@ -9,13 +9,18 @@
  "field_order": [
   "event",
   "customer",
-  "mobile_number",
   "customer_group",
-  "action",
+  "mobile_number",
   "tracking_details_section",
-  "registration",
-  "checkin",
-  "ts_event"
+  "registration_column",
+  "registration_time",
+  "event_checkin",
+  "event_checkin_time",
+  "hall_checkin",
+  "hall_checkin_time",
+  "print",
+  "action",
+  "date"
  ],
  "fields": [
   {
@@ -49,37 +54,66 @@
    "reqd": 1
   },
   {
-   "fieldname": "tracking_details_section",
-   "fieldtype": "Section Break",
-   "label": "Tracking Details"
-  },
-  {
-   "default": "0",
-   "fieldname": "registration",
-   "fieldtype": "Check",
-   "label": "Registration"
-  },
-  {
-   "default": "0",
-   "fieldname": "checkin",
-   "fieldtype": "Check",
-   "label": "Checkin"
-  },
-  {
    "fieldname": "customer_group",
    "fieldtype": "Link",
    "label": "Customer Group",
    "options": "Customer Group"
   },
   {
-   "fieldname": "ts_event",
+   "fieldname": "tracking_details_section",
+   "fieldtype": "Section Break",
+   "label": "Tracking Details"
+  },
+  {
+   "default": "gf",
+   "fieldname": "registration_column",
    "fieldtype": "Data",
-   "label": "Event"
+   "label": "Registration",
+   "read_only": 1
+  },
+  {
+   "fieldname": "registration_time",
+   "fieldtype": "Datetime",
+   "label": "Registration time"
+  },
+  {
+   "fieldname": "event_checkin",
+   "fieldtype": "Data",
+   "label": "Event Checkin",
+   "read_only": 1
+  },
+  {
+   "fieldname": "event_checkin_time",
+   "fieldtype": "Datetime",
+   "label": "Event Checkin Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "hall_checkin",
+   "fieldtype": "Data",
+   "label": "Hall Checkin ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "hall_checkin_time",
+   "fieldtype": "Datetime",
+   "label": "Hall Checkin Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "date"
+  },
+  {
+   "fieldname": "print",
+   "fieldtype": "Section Break",
+   "label": "Print Action"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-06-18 18:57:24.322590",
+ "modified": "2022-06-18 19:17:07.850268",
  "modified_by": "Administrator",
  "module": "Visitor Management",
  "name": "Member Tracking",
