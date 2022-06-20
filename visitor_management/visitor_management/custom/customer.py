@@ -16,20 +16,28 @@ def contact(doc,action):
                 'is_billing_contact':1,
     }
     new_contact_doc.update(new_fields)
-    email_id_table = []
-    email_id = {
-                'email_id': doc.email_ids,
-                'is_primary': 1,
-    }
-    email_id_table.append(email_id)
+    if doc.email_ids:
+        email_id_table = []
+        email_id = {
+                        'email_id': doc.email_ids,
+                        'is_primary': 1,
+        }
+        email_id_table.append(email_id)
+        new_contact_doc.update({
+                'email_ids':email_id_table
+        })
 
-    phone_no_table=[]
-    phone_no={
-                "phone":doc.phone_no,
-                "is_primary_phone":1,
-                "is_primary_mobile_no":1,
-    }
-    phone_no_table.append(phone_no)
+    if doc.phone_no:
+        phone_no_table=[]
+        phone_no={
+                        "phone":doc.phone_no,
+                        "is_primary_phone":1,
+                        "is_primary_mobile_no":1,
+        }
+        phone_no_table.append(phone_no)
+        new_contact_doc.update({
+                'phone_nos':phone_no_table
+        })
     contact_link_table=[]
     contact_link={
                 "link_doctype":'Customer',
@@ -37,8 +45,6 @@ def contact(doc,action):
     }
     contact_link_table.append(contact_link)
     new_contact_doc.update({
-                'email_ids':email_id_table,
-                'phone_nos':phone_no_table,
                 'links':contact_link_table
     })
     new_contact_doc.save()

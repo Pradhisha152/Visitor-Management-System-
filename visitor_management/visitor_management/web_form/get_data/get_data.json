@@ -22,7 +22,7 @@
  "is_standard": 1,
  "login_required": 0,
  "max_attachment_size": 0,
- "modified": "2022-06-18 17:41:22.825350",
+ "modified": "2022-06-18 19:46:49.688682",
  "modified_by": "Administrator",
  "module": "Visitor Management",
  "name": "get-data",
@@ -60,6 +60,18 @@
    "max_value": 0,
    "read_only": 0,
    "reqd": 1,
+   "show_in_filter": 0
+  },
+  {
+   "allow_read_on_all_link_options": 0,
+   "fieldname": "email_ids",
+   "fieldtype": "Data",
+   "hidden": 0,
+   "label": "Email Id",
+   "max_length": 0,
+   "max_value": 0,
+   "read_only": 0,
+   "reqd": 0,
    "show_in_filter": 0
   },
   {
@@ -113,7 +125,7 @@
   },
   {
    "allow_read_on_all_link_options": 0,
-   "default": "Registered Rice Miller",
+   "default": "Unregistered Rice Miller",
    "fieldname": "customer_group",
    "fieldtype": "Link",
    "hidden": 0,
