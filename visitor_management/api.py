@@ -9,6 +9,7 @@ import os
 import http.client
 import json
 from frappe.utils import get_url
+from frappe.utils.data import now_datetime
 from pyqrcode import create as qr_create
 
 @frappe.whitelist(allow_guest=True)
@@ -90,6 +91,8 @@ def create_member_tracking(event,customer):
 	member=frappe.new_doc("Member Tracking")
 	member.event=event
 	member.customer=customer
+	member.registration="1"
+	member.registration_time=now_datetime()
 	member.insert()
 	member.save()
 	frappe.db.commit()
