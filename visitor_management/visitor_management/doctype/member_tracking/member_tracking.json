@@ -11,16 +11,25 @@
   "customer",
   "customer_group",
   "mobile_number",
+  "taluk",
+  "qr_url",
   "tracking_details_section",
-  "registration_column",
+  "registration",
   "registration_time",
   "event_checkin",
   "event_checkin_time",
   "hall_checkin",
   "hall_checkin_time",
-  "print",
+  "dinning_check_inn",
+  "dinning_check_inn_time",
+  "event_check_out",
+  "event_check_out_time",
+  "print_action",
   "action",
-  "date"
+  "date",
+  "column_break_19",
+  "pdf_preview",
+  "print"
  ],
  "fields": [
   {
@@ -46,6 +55,7 @@
    "options": "\nPrint\nScan"
   },
   {
+   "fetch_from": "customer.whatsapp_number",
    "fieldname": "mobile_number",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -54,10 +64,11 @@
    "reqd": 1
   },
   {
+   "fetch_from": "customer.customer_group",
    "fieldname": "customer_group",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "label": "Customer Group",
-   "options": "Customer Group"
+   "read_only": 1
   },
   {
    "fieldname": "tracking_details_section",
@@ -65,40 +76,31 @@
    "label": "Tracking Details"
   },
   {
-   "default": "gf",
-   "fieldname": "registration_column",
-   "fieldtype": "Data",
-   "label": "Registration",
-   "read_only": 1
-  },
-  {
    "fieldname": "registration_time",
    "fieldtype": "Datetime",
    "label": "Registration time"
   },
   {
+   "default": "0",
    "fieldname": "event_checkin",
-   "fieldtype": "Data",
-   "label": "Event Checkin",
-   "read_only": 1
+   "fieldtype": "Check",
+   "label": "Event check-inn"
   },
   {
    "fieldname": "event_checkin_time",
    "fieldtype": "Datetime",
-   "label": "Event Checkin Time",
-   "read_only": 1
+   "label": "Event check-inn Time"
   },
   {
+   "default": "0",
    "fieldname": "hall_checkin",
-   "fieldtype": "Data",
-   "label": "Hall Checkin ",
-   "read_only": 1
+   "fieldtype": "Check",
+   "label": "Hall check-inn "
   },
   {
    "fieldname": "hall_checkin_time",
    "fieldtype": "Datetime",
-   "label": "Hall Checkin Time",
-   "read_only": 1
+   "label": "Hall check-inn Time"
   },
   {
    "fieldname": "date",
@@ -106,14 +108,72 @@
    "label": "date"
   },
   {
+   "depends_on": "eval:doc.action==\"Print\" && doc.customer",
    "fieldname": "print",
+   "fieldtype": "Button",
+   "label": "Print"
+  },
+  {
+   "fetch_from": "customer.taluk",
+   "fieldname": "taluk",
+   "fieldtype": "Data",
+   "label": "Taluk",
+   "read_only": 1
+  },
+  {
+   "fieldname": "qr_url",
+   "fieldtype": "Data",
+   "label": "qr_url",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "registration",
+   "fieldtype": "Check",
+   "label": "Registration"
+  },
+  {
+   "default": "0",
+   "fieldname": "dinning_check_inn",
+   "fieldtype": "Check",
+   "label": "Dinning check-inn"
+  },
+  {
+   "fieldname": "dinning_check_inn_time",
+   "fieldtype": "Datetime",
+   "label": "Dinning check-inn Time"
+  },
+  {
+   "default": "0",
+   "fieldname": "event_check_out",
+   "fieldtype": "Check",
+   "label": "Event check-out "
+  },
+  {
+   "fieldname": "event_check_out_time",
+   "fieldtype": "Datetime",
+   "label": "Event check-out Time"
+  },
+  {
+   "fieldname": "print_action",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Print Action"
+  },
+  {
+   "fieldname": "column_break_19",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.action==\"Print\" && doc.customer",
+   "fieldname": "pdf_preview",
+   "fieldtype": "HTML",
+   "label": "pdf preview"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-06-18 19:17:07.850268",
+ "modified": "2022-06-20 21:56:13.758841",
  "modified_by": "Administrator",
  "module": "Visitor Management",
  "name": "Member Tracking",

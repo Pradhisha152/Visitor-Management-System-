@@ -1,10 +1,14 @@
 import frappe
 import re
 
+from frappe.exceptions import DuplicateEntryError
+
+
 def after_save(doc,action):
-    frappe.set_user('Administrator')
     contact(doc,action)
     address(doc,action)
+    member_tracking(doc)
+
 
 def contact(doc,action):
          
@@ -47,13 +51,13 @@ def contact(doc,action):
     new_contact_doc.update({
                 'links':contact_link_table
     })
-    new_contact_doc.save()
+    new_contact_doc.save(ignore_permissions=True)
 
 def address(doc,action):
     new_address_doc = frappe.new_doc("Address")
     new_fields = {
             'address_title':doc.organization_name,
-            'address_line1':doc.address,
+            'address_line1':doc.address or doc.organization_name,
             'email_id':doc.email_ids,
             'phone':doc.phone_no,
             'states':doc.state,
@@ -73,10 +77,34 @@ def address(doc,action):
     new_address_doc.update({
             'links':contact_link_table
     })
-    new_address_doc.save()
+    new_address_doc.save(ignore_permissions=True)
 def validate_phone(doc,action):
     phone_number(doc,action)
     whatsapp_number(doc,action)
+
+def validate_entry(doc,action=None):
+    customer_list = frappe.get_all('Customer',pluck="whatsapp_number")
+    if(doc.whatsapp_number in customer_list):
+        customer_name = frappe.get_all('Customer',{'whatsapp_number':doc.whatsapp_number},pluck="customer_name")
+        if(customer_name[0]!=doc.customer_name):
+            member_tracking(doc)
+            frappe.throw(f'Customer Whatsapp Number Already Exist for {customer_name[0]}')
+        else:
+            member_tracking(doc)
+            raise frappe.exceptions.DuplicateEntryError('Customer name already exist')
+
+def member_tracking(doc):
+    customer_name = frappe.get_all('Customer',{'whatsapp_number':doc.whatsapp_number},["customer_name","customer_group"])
+    if(doc.are_you_attending_event == "Yes"):
+        new = frappe.new_doc("Member Tracking")
+        new.update({
+            'event': doc.event,
+            'mobile_number' : doc.whatsapp_number,
+            'customer_group' : customer_name[0]['customer_group'],
+            'customer': customer_name[0]['customer_name']
+        })
+        new.save(ignore_permissions=True)
+        frappe.db.commit()
 
 
 def phone_number(doc,action):
@@ -92,8 +120,3 @@ def whatsapp_number(doc,action):
            frappe.throw(frappe._("{0} is not a valid WhatsApp Number.").format(whatsapp_number), frappe.InvalidPhoneNumberError)
 
 
-def check(email_ids):
-    if(re.fullmatch(regex, email_ids)):
-        print("Valid Email")
-    else:
-        print("Invalid Email")

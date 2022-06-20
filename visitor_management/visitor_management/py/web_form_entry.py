@@ -8,7 +8,8 @@ def create_entry(qr_details, entry_type='0'):
     doc.update({
         'visitor_name':'',
         'mobile_no':'',
-        'entry_type':entry_type
+        'entry_type':entry_type,
+        'event':''
     })
     doc.insert()
     doc.submit()

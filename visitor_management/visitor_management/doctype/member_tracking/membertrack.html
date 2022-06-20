@@ -52,26 +52,22 @@
             }
         </style>
         
-        {% if letter_head %}
-            {{ letter_head }}
-        {% endif %}
+        <div class="text-center">
+            <h1>TamilNadu Rice Mill Owner Association.</h1>
+          </div>
         
         <p class="text-center" style="margin-bottom: 1rem">
         
         </p>
         <p>
-            <b>{{ _("Name") }}:</b> {{ "name" }}<br>
-            <b>{{ _("Mobile No") }}:</b> {{ doc.owner }}<br>
-            <b>{{ _("ID") }}:</b> {{ doc.customer_name }}<br>
-            <b>{{ _("Area") }}:</b> {{ doc.get_formatted("posting_date") }}<br>
-            <b>{{ _("Event Name") }}:</b> {{ doc.get_formatted("posting_date") }}<br>
-            <b>{{ _("Organisation Name") }}:</b> {{ doc.get_formatted("posting_date") }}<br>
+            <b>{{ "Name" }}:</b> {{ doc.customer }}<br>
+            <b>{{ "Mobile No" }}:</b> {{ doc.mobile_number }}<br>
+            <b>{{ "Area" }}:</b> {{ doc.taluk }}<br>
+            <b>{{ "Event Name" }}:</b> {{ doc.event }}<br>
             
         </p>
         
-         <img src=
-        "https://chart.googleapis.com/chart?cht=qr&chl=Hello+World&chs=160x160&chld=L|0/150*150"
-                class="qr-code img-thumbnail img-responsive" />
+         <img src= {{ "https://trmoa.thirvusoft.com/"+ qr_url }} >
         <style>
          .center {
           display: block;
@@ -83,5 +79,5 @@
         
                    
         
-        <p class="text-center">{{ _("Thank you, please visit again.") }}</p>
+        <p class="text-center">{{ "Thank you, please visit again." }}</p>
             
