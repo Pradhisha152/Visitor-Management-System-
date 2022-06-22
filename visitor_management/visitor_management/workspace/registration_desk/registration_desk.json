@@ -14,7 +14,7 @@
  "is_standard": 1,
  "label": "Registration Desk",
  "links": [],
- "modified": "2022-06-18 17:42:07.434435",
+ "modified": "2022-06-21 19:07:24.849370",
  "modified_by": "Administrator",
  "module": "Visitor Management",
  "name": "Registration Desk",
@@ -23,21 +23,15 @@
  "pin_to_top": 1,
  "shortcuts": [
   {
-   "doc_view": "List",
-   "label": "Customer",
+   "doc_view": "New",
+   "label": "Register",
    "link_to": "Customer",
    "type": "DocType"
   },
   {
    "doc_view": "List",
-   "label": "Point Of Sale",
-   "link_to": "point-of-sale",
-   "type": "Page"
-  },
-  {
-   "doc_view": "List",
-   "label": "Member Tracking",
-   "link_to": "Member Tracking",
+   "label": "Member List",
+   "link_to": "Customer",
    "type": "DocType"
   }
  ],

@@ -14,7 +14,8 @@ from frappe.utils.pdf import get_pdf
 
 class MemberTracking(Document):
 	def after_insert(self):
-		data = "Name :"+self.customer+"\n"+"Mobile Number :"+self.mobile_number+"\n"+"Territory :"+self.taluk
+		customer_group=frappe.get_all('Customer', {'whatsapp_number': self.mobile_number}, pluck="customer_group")
+		data = "Name :"+self.customer+"\n"+"Registration Type :"+(customer_group[0] if(customer_group) else '')+"\n"+"Mobile Number :"+self.mobile_number+"\n"+"Territory :"+(self.taluk or '')
 		qr_url = create_qr_code(self, data)
 		frappe.db.set_value(self.doctype, self.name, 'qr_url', qr_url)
 		frappe.db.commit()
@@ -28,7 +29,7 @@ class MemberTracking(Document):
 		"attached_to_doctype":  self.doctype,
 		"attached_to_name": self.name
 	    })
-		file.save()
+		file.save(ignore_permissions=True)
 		send_invoice(self.mobile_number,file.file_url,file.file_name)
 
 @frappe.whitelist()
@@ -46,15 +47,13 @@ def create_qr_code(self, data):
 		"attached_to_doctype":  self.doctype,
 		"attached_to_name": self.name
 	})
-	_file.save()
+	_file.save(ignore_permissions=True)
 	return _file.file_url
 
 @frappe.whitelist()
 def send_invoice(mobile_no, link,filename):
 	if(link):
 		link=frappe.utils.get_url()+link
-		frappe.errprint(link)
-		frappe.errprint(mobile_no)
 		conn = http.client.HTTPSConnection("api.interakt.ai")
 		payload = json.dumps({
 		"countryCode": "+91",

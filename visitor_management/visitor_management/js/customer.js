@@ -24,13 +24,12 @@ frappe.ui.form.on("Customer", {
 				}
 			};
 		});
-		frm.set_query("customer_group", function() {
-			return {
-				"filters": {
-					"is_registered" : 0
-                    
-				}
-			};
-		});
+		frm.set_query('customer_group', function(frm){
+            return {
+                filters: {
+                    'next_customer_group': ['!=', '']
+                }
+            }
+        });
     }
 })

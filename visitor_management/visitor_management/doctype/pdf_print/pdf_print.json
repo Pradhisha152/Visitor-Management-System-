@@ -1,0 +1,48 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2022-06-21 20:22:41.612524",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "mobile_number",
+  "visitor_count"
+ ],
+ "fields": [
+  {
+   "fieldname": "mobile_number",
+   "fieldtype": "Link",
+   "label": "Mobile Number",
+   "options": "Member Tracking"
+  },
+  {
+   "default": "1",
+   "fieldname": "visitor_count",
+   "fieldtype": "Int",
+   "label": "Visitor Count"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2022-06-21 20:27:42.699558",
+ "modified_by": "Administrator",
+ "module": "Visitor Management",
+ "name": "PDF Print",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

@@ -50,13 +50,5 @@ frappe.ui.form.on('Member Tracking', {
 		else{
 			frm.set_value('event_check_out_time','')
 		}
-	},
-	action: function(frm){
-		if(frm.doc.action=="Print"){
-			let path='membertrack';
-			let html=frappe.render_template(path, {doc:frm.doc,qr_url: cur_frm.doc.qr_url ,letter_head:"TRMOA"})
-			console.log(html)
-			frm.set_df_property('pdf_preview','options' , html)
-		}
 	}
 });
