@@ -1,6 +1,8 @@
 frappe.ui.form.on("Customer", {
     refresh: function(frm) {
-		frm.set_value("spot_registration",1)
+		if(frm.is_new()){
+			frm.set_value("spot_registration",1)
+		}
 		frm.set_query("state", function() {
 			return {
 				"filters": {

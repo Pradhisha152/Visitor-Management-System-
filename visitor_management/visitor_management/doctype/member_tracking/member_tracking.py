@@ -15,8 +15,8 @@ from frappe.utils.pdf import get_pdf
 class MemberTracking(Document):
 	def after_insert(self):
 		customer_group=frappe.get_all('Customer', {'whatsapp_number': self.mobile_number}, pluck="customer_group")
-		org_name=frappe.get_value('Customer', self.customer, 'organization_name')
-		data = self.customer+"\n"+(customer_group[0] if(customer_group) else '')+"\n"+org_name+"\n"+self.mobile_number+"\n"+self.event+"\n"+(self.taluk or '')
+		org_name=frappe.get_value('Customer', self.customer, 'organization_name') or ''
+		data = (self.customer or '')+"\n"+(customer_group[0] if(customer_group) else '')+"\n"+org_name+"\n"+(self.mobile_number or '')+"\n"+(self.event or '')+"\n"+(self.taluk or '')
 		qr_url = create_qr_code(self, data)
 		frappe.db.set_value(self.doctype, self.name, 'qr_url', qr_url)
 		frappe.db.commit()
@@ -29,7 +29,7 @@ class MemberTracking(Document):
 		"content": get_pdf(html),
 		"attached_to_doctype":  self.doctype,
 		"attached_to_name": self.name
-	    })
+	    }) 
 		file.save(ignore_permissions=True)
 		send_invoice(self.mobile_number,file.file_url,file.file_name)
 

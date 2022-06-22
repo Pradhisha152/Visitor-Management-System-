@@ -129,13 +129,12 @@ def member_tracking(doc):
 
 
 def phone_number(doc,action):
-   phone_no = doc.phone_no
-   if phone_no:
-       if not phone_no.isdigit() or len(phone_no) != 10:
-           frappe.throw(frappe._("{0} is not a valid Phone Number.").format(phone_no), frappe.InvalidPhoneNumberError)
+    phone_no = doc.phone_no
+    if phone_no:
+        if not phone_no.isdigit() or len(phone_no) != 10:
+            frappe.throw(frappe._("{0} is not a valid Phone Number.").format(phone_no), frappe.InvalidPhoneNumberError)
 
 def whatsapp_number(doc,action):
-    return
     whatsapp_number= doc.whatsapp_number
     if whatsapp_number:
         if not whatsapp_number.isdigit() or len(whatsapp_number) != 10:

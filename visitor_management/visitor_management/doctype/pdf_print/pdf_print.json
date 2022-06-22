@@ -7,7 +7,9 @@
  "engine": "InnoDB",
  "field_order": [
   "mobile_number",
-  "visitor_count"
+  "visitor_count",
+  "column_break_3",
+  "membership"
  ],
  "fields": [
   {
@@ -22,12 +24,23 @@
    "fieldname": "visitor_count",
    "fieldtype": "Int",
    "label": "Visitor Count"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "mobile_number.customer_group",
+   "fieldname": "membership",
+   "fieldtype": "Data",
+   "label": "Membership",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2022-06-22 14:39:28.375956",
+ "modified": "2022-06-22 23:03:02.649337",
  "modified_by": "Administrator",
  "module": "Visitor Management",
  "name": "PDF Print",
