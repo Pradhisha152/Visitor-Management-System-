@@ -1,3 +1,4 @@
+from visitor_management.visitor_management.py.autoname import autoname
 from . import __version__ as app_version
 
 app_name = "visitor_management"
@@ -99,6 +100,16 @@ doc_events = {
 		"before_naming": "visitor_management.visitor_management.custom.customer.validate_entry",
 		"after_insert": "visitor_management.visitor_management.custom.customer.after_save",
 		"validate":"visitor_management.visitor_management.custom.customer.validate_phone"
+	},
+	"POS Invoice": {
+		'on_submit':'visitor_management.visitor_management.py.pos_invoice.update_cusomer_group',
+		'on_update_after_submit':'visitor_management.visitor_management.py.pos_invoice.update_cusomer_group'
+	},
+	"Contact": {
+		'autoname': "visitor_management.visitor_management.py.autoname.autoname"
+	},
+	"Address": {
+		'autoname': "visitor_management.visitor_management.py.autoname.autoname"
 	}
 }
 

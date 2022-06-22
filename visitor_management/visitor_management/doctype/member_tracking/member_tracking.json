@@ -9,27 +9,27 @@
  "field_order": [
   "event",
   "customer",
+  "event_participation",
   "customer_group",
   "mobile_number",
   "taluk",
   "qr_url",
+  "count",
   "tracking_details_section",
   "registration",
   "registration_time",
+  "spot_registration",
+  "spot_registration_time",
   "event_checkin",
   "event_checkin_time",
+  "print",
+  "print_time",
   "hall_checkin",
   "hall_checkin_time",
   "dinning_check_inn",
   "dinning_check_inn_time",
   "event_check_out",
-  "event_check_out_time",
-  "print_action",
-  "action",
-  "date",
-  "column_break_19",
-  "pdf_preview",
-  "print"
+  "event_check_out_time"
  ],
  "fields": [
   {
@@ -47,12 +47,6 @@
    "label": "Customer",
    "options": "Customer",
    "reqd": 1
-  },
-  {
-   "fieldname": "action",
-   "fieldtype": "Select",
-   "label": "Action",
-   "options": "\nPrint\nScan"
   },
   {
    "fetch_from": "customer.whatsapp_number",
@@ -103,17 +97,6 @@
    "label": "Hall check-inn Time"
   },
   {
-   "fieldname": "date",
-   "fieldtype": "Datetime",
-   "label": "date"
-  },
-  {
-   "depends_on": "eval:doc.action==\"Print\" && doc.customer",
-   "fieldname": "print",
-   "fieldtype": "Button",
-   "label": "Print"
-  },
-  {
    "fetch_from": "customer.taluk",
    "fieldname": "taluk",
    "fieldtype": "Data",
@@ -155,25 +138,45 @@
    "label": "Event check-out Time"
   },
   {
-   "fieldname": "print_action",
-   "fieldtype": "Section Break",
-   "hidden": 1,
-   "label": "Print Action"
+   "default": "1",
+   "fieldname": "count",
+   "fieldtype": "Int",
+   "label": "Count",
+   "read_only": 1
   },
   {
-   "fieldname": "column_break_19",
-   "fieldtype": "Column Break"
+   "default": "Yes",
+   "fieldname": "event_participation",
+   "fieldtype": "Select",
+   "label": "Event Participation",
+   "options": "\nYes\nNo"
   },
   {
-   "depends_on": "eval:doc.action==\"Print\" && doc.customer",
-   "fieldname": "pdf_preview",
-   "fieldtype": "HTML",
-   "label": "pdf preview"
+   "default": "0",
+   "fieldname": "spot_registration",
+   "fieldtype": "Check",
+   "label": "Spot Registration"
+  },
+  {
+   "fieldname": "spot_registration_time",
+   "fieldtype": "Datetime",
+   "label": "Spot Registration Time"
+  },
+  {
+   "default": "0",
+   "fieldname": "print",
+   "fieldtype": "Check",
+   "label": "Tag Print"
+  },
+  {
+   "fieldname": "print_time",
+   "fieldtype": "Datetime",
+   "label": "Tag Print Time"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-06-20 21:56:13.758841",
+ "modified": "2022-06-22 17:31:41.099745",
  "modified_by": "Administrator",
  "module": "Visitor Management",
  "name": "Member Tracking",

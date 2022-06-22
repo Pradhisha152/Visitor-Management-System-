@@ -1,0 +1,90 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2022-06-22 17:27:05.819082",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "scan_qr",
+  "entry_type_section",
+  "checkin",
+  "column_break_3",
+  "dinningin",
+  "column_break_5",
+  "checkout",
+  "column_break_8",
+  "hall_check_in"
+ ],
+ "fields": [
+  {
+   "fieldname": "scan_qr",
+   "fieldtype": "Data",
+   "label": "Scan QR",
+   "options": "Barcode"
+  },
+  {
+   "default": "0",
+   "fieldname": "checkin",
+   "fieldtype": "Check",
+   "label": "Check-in"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "dinningin",
+   "fieldtype": "Check",
+   "label": "Dinning-in"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "checkout",
+   "fieldtype": "Check",
+   "label": "Check-out"
+  },
+  {
+   "fieldname": "entry_type_section",
+   "fieldtype": "Section Break",
+   "label": "Entry Type"
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "hall_check_in",
+   "fieldtype": "Check",
+   "label": "Hall Check-in"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2022-06-22 19:34:57.167722",
+ "modified_by": "Administrator",
+ "module": "Visitor Management",
+ "name": "Scan Qr code",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

@@ -18,6 +18,7 @@
   },
   {
    "default": "1",
+   "fetch_from": "mobile_number.count",
    "fieldname": "visitor_count",
    "fieldtype": "Int",
    "label": "Visitor Count"
@@ -26,7 +27,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2022-06-21 20:27:42.699558",
+ "modified": "2022-06-22 14:39:28.375956",
  "modified_by": "Administrator",
  "module": "Visitor Management",
  "name": "PDF Print",

@@ -1,5 +1,6 @@
 import frappe
 import re
+from frappe.utils import now_datetime
 
 from frappe.exceptions import DuplicateEntryError
 
@@ -64,6 +65,7 @@ def address(doc,action):
             'country':doc.country,
             'district':doc.district,
             'taluk':doc.taluk,
+            'whatsapp_number':doc.whatsapp_number
     }
     
 
@@ -88,23 +90,42 @@ def validate_entry(doc,action=None):
         customer_name = frappe.get_all('Customer',{'whatsapp_number':doc.whatsapp_number},pluck="customer_name")
         if(customer_name[0]!=doc.customer_name):
             member_tracking(doc)
-            frappe.throw(f'Customer Whatsapp Number Already Exist for {customer_name[0]}')
+            frappe.msgprint('Successfully registered for the event.')
+            frappe.throw(f'Whatsapp Number Already Exist for {customer_name[0]}')
         else:
             member_tracking(doc)
+            frappe.msgprint('Successfully registered for the event.')
             raise frappe.exceptions.DuplicateEntryError('Customer name already exist')
 
 def member_tracking(doc):
-    customer_name = frappe.get_all('Customer',{'whatsapp_number':doc.whatsapp_number},["customer_name","customer_group"])
-    if(doc.are_you_attending_event == "Yes"):
+    if(doc.event):
+        customer_name = frappe.get_all('Customer',{'whatsapp_number':doc.whatsapp_number},["customer_name","customer_group"])
+        if(doc.event+'-'+doc.whatsapp_number in frappe.get_all('Member Tracking',pluck='name')):
+            frappe.throw('Already registered for the event.')
         new = frappe.new_doc("Member Tracking")
         new.update({
+            'event_participation' : doc.are_you_attending_event,
             'event': doc.event,
             'mobile_number' : doc.whatsapp_number,
             'customer_group' : customer_name[0]['customer_group'],
-            'customer': customer_name[0]['customer_name']
+            'customer': customer_name[0]['customer_name'],
+            'count' : doc.visitor_count,
+            
         })
+        if(doc.spot_registration==1):
+            new.update({
+                "spot_registration" : 1,
+                "spot_registration_time" : now_datetime(),
+                    })
+        else:
+            new.update({
+                "registration" : 1,
+                "registration_time" : now_datetime()
+            })
         new.save(ignore_permissions=True)
         frappe.db.commit()
+    
+       
 
 
 def phone_number(doc,action):
@@ -114,9 +135,10 @@ def phone_number(doc,action):
            frappe.throw(frappe._("{0} is not a valid Phone Number.").format(phone_no), frappe.InvalidPhoneNumberError)
 
 def whatsapp_number(doc,action):
-   whatsapp_number= doc.whatsapp_number
-   if whatsapp_number:
-       if not whatsapp_number.isdigit() or len(whatsapp_number) != 10:
-           frappe.throw(frappe._("{0} is not a valid WhatsApp Number.").format(whatsapp_number), frappe.InvalidPhoneNumberError)
+    return
+    whatsapp_number= doc.whatsapp_number
+    if whatsapp_number:
+        if not whatsapp_number.isdigit() or len(whatsapp_number) != 10:
+            frappe.throw(frappe._("{0} is not a valid WhatsApp Number.").format(whatsapp_number), frappe.InvalidPhoneNumberError)
 
 

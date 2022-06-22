@@ -4,7 +4,7 @@
 frappe.ui.form.on('PDF Print', {
 	refresh: function(frm) {
 		frm.disable_save()
-		frm.add_custom_button('Get PDF', function(){
+		frm.add_custom_button('Print', function(){
 			if(frm.doc.mobile_number && frm.doc.visitor_count){
 					frappe.call({
 						method:"visitor_management.visitor_management.doctype.pdf_print.pdf_print.pdf_print",
@@ -14,21 +14,21 @@ frappe.ui.form.on('PDF Print', {
 						},
 						callback: function(r){
 							let res=r.message
-							let w = window.open(
-								frappe.urllib.get_full_url(
-									method +
-										'doctype=' +
-										encodeURIComponent(res.doctype) +
-										'&name=' +
-										encodeURIComponent(res.name) +
-										(printit ? '&trigger_print=1' : '') +
-										'&format=' +
-										encodeURIComponent('') +
-										'&no_letterhead=' + '1' +
-										'&letterhead=' +
-										encodeURIComponent("TRMOA") 
-								)
-							);
+							let url=frappe.urllib.get_full_url(
+								'/api/method/frappe.utils.print_format.download_pdf?' +
+									'doctype=' +
+									encodeURIComponent(res.doctype) +
+									'&name=' +
+									encodeURIComponent(res.name) +
+									'&trigger_print=1' +
+									'&format=' +
+									encodeURIComponent('TRMAO') +
+									'&no_letterhead=' + '1' +
+									'&letterhead=' +
+									encodeURIComponent("TRMOA") 
+							)							
+							
+							let w = window.open(url);
 							if (!w) {
 								frappe.msgprint(__('Please enable pop-ups'));
 								return;
@@ -39,6 +39,6 @@ frappe.ui.form.on('PDF Print', {
 			else{
 				frappe.show_alert({'message':'Please enter Mobile Number and Visitor Count','indicator':'red'},1.5)
 			}
-		})
+		}).addClass("btn-primary");
 	}
 });
