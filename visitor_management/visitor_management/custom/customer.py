@@ -1,8 +1,5 @@
 import frappe
-import re
 from frappe.utils import now_datetime
-
-from frappe.exceptions import DuplicateEntryError
 
 
 def after_save(doc,action):
@@ -91,8 +88,8 @@ def validate_entry(doc,action=None):
         customer_name = frappe.get_all('Customer',{'whatsapp_number':doc.whatsapp_number},pluck="customer_name")
         if(customer_name[0]!=doc.customer_name):
             member_tracking(doc)
-            frappe.msgprint('Successfully registered for the event.')
-            frappe.throw(f'Whatsapp Number Already Exist for {customer_name[0]}')
+            frappe.msgprint(f'Successfully registered for the event and Whatsapp Number Already Exist for {customer_name[0]}')
+            raise frappe.exceptions.DuplicateEntryError('Customer name already exist')
         else:
             member_tracking(doc)
             frappe.msgprint('Successfully registered for the event.')
@@ -104,7 +101,7 @@ def member_tracking(doc):
     if(doc.event):
         customer_name = frappe.get_all('Customer',{'whatsapp_number':doc.whatsapp_number},["customer_name","customer_group"])
         if(doc.event+'-'+doc.whatsapp_number in frappe.get_all('Member Tracking',pluck='name')):
-            frappe.throw('Already registered for the event.')
+            frappe.throw('Already registered for the event and a invitation document is sent to your whatsapp.')
         new = frappe.new_doc("Member Tracking")
         new.update({
             'event_participation' : doc.are_you_attending_event,

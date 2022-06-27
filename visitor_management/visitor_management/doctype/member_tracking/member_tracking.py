@@ -30,7 +30,7 @@ class MemberTracking(Document):
 	    }) 
 		file.save(ignore_permissions=True)
 		send_invitation(self.mobile_number, self.event, self.customer)
-		send_invoice(self.mobile_number,file.file_url,file.file_name, self.customer)
+		send_invoice(self.mobile_number,file.file_url,file.file_name, self.customer, self.event)
 
 @frappe.whitelist()
 def create_qr_code(self, data):
@@ -51,7 +51,13 @@ def create_qr_code(self, data):
 	return _file.file_url
 
 @frappe.whitelist()
-def send_invoice(mobile_no, link,filename, cus_name):
+def send_invoice(mobile_no, link,filename, cus_name, event):
+	cus_name=frappe.get_value('Customer', cus_name, 'customer_name')
+	body_value= [cus_name]
+	map_link=frappe.get_value('Event', event, 'google_map_link')
+	if(map_link):
+		body_value.append(map_link)
+	temp_name= "registration_confirmation_op" if(len(body_value)==2) else  "registration_confirmation"
 	if(link):
 		link=frappe.utils.get_url()+link
 		conn = http.client.HTTPSConnection("api.interakt.ai")
@@ -61,13 +67,11 @@ def send_invoice(mobile_no, link,filename, cus_name):
 		"callbackData": "some text here",
 		"type": "Template",
 		"template": {
-		"name": "registration_confirmation",
+		"name": temp_name,
 		"languageCode": "en",
 		"headerValues": [ link ],
 		"fileName": filename,
-		"bodyValues": [
-			cus_name
-		]
+		"bodyValues": body_value
 		}
 	})
 		headers = {
@@ -80,8 +84,14 @@ def send_invoice(mobile_no, link,filename, cus_name):
 		data = res.read()
 		
 def send_invitation(mobile_no, event,cus_name):
+	cus_name=frappe.get_value('Customer', cus_name, 'customer_name')
 	for url in frappe.get_all('Event Messages', {'parent':event, 'send_this_document':1, 'file_attachment':['!=', '']}, pluck="file_attachment"):
 		link=url
+		body_value= [cus_name]
+		map_link=frappe.get_value('Event', event, 'google_map_link')
+		if(map_link):
+			body_value.append(map_link)
+		temp_name= "registration_confirmation_op" if(len(body_value)==2) else  "registration_confirmation"
 		if(link):
 			link='https://trmoa.thirvusoft.com'+link
 			conn = http.client.HTTPSConnection("api.interakt.ai")
@@ -91,13 +101,11 @@ def send_invitation(mobile_no, event,cus_name):
 			"callbackData": "some text here",
 			"type": "Template",
 			"template": {
-			"name": "registration_confirmation",
+			"name": temp_name,
 			"languageCode": "en",
 			"headerValues": [ link ],
 			"fileName": "Invitation.pdf",
-			"bodyValues": [
-				cus_name
-			]
+			"bodyValues": body_value
 			}
 		})
 			headers = {
