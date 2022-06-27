@@ -6,6 +6,7 @@ from frappe.exceptions import DuplicateEntryError
 
 
 def after_save(doc,action):
+    
     contact(doc,action)
     address(doc,action)
     member_tracking(doc)
@@ -97,6 +98,8 @@ def validate_entry(doc,action=None):
             frappe.msgprint('Successfully registered for the event.')
             raise frappe.exceptions.DuplicateEntryError('Customer name already exist')
 
+
+
 def member_tracking(doc):
     if(doc.event):
         customer_name = frappe.get_all('Customer',{'whatsapp_number':doc.whatsapp_number},["customer_name","customer_group"])
@@ -115,12 +118,12 @@ def member_tracking(doc):
         if(doc.spot_registration==1):
             new.update({
                 "spot_registration" : 1,
-                "spot_registration_time" : now_datetime(),
+                "spot_registration_time" : str(now_datetime())
                     })
         else:
             new.update({
                 "registration" : 1,
-                "registration_time" : now_datetime()
+                "registration_time" : str(now_datetime())
             })
         new.save(ignore_permissions=True)
         frappe.db.commit()

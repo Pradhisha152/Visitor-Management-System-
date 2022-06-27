@@ -7,6 +7,8 @@
  "engine": "InnoDB",
  "field_order": [
   "scan_qr",
+  "column_break_2",
+  "open_print_after_scan",
   "entry_type_section",
   "checkin",
   "column_break_3",
@@ -63,12 +65,22 @@
    "fieldname": "hall_check_in",
    "fieldtype": "Check",
    "label": "Hall Check-in"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "open_print_after_scan",
+   "fieldtype": "Check",
+   "label": "Open Print After Scan"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2022-06-22 19:34:57.167722",
+ "modified": "2022-06-23 12:53:51.305846",
  "modified_by": "Administrator",
  "module": "Visitor Management",
  "name": "Scan Qr code",

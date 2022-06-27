@@ -18,7 +18,7 @@ def pdf_print(name, count=1):
 		doc.update({
 			'count': count,
 			'print': 1,
-			'print_time': now_datetime()
+			'print_time': str(doc.print_time or '')+'\n'+str(now_datetime())
 		})
 		doc.save()
 	return doc

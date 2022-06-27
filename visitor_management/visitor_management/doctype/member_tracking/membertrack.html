@@ -26,19 +26,7 @@
             font-size: 5px;
             padding-left: 60px;
           }
-    
-    
-    </style>
-    
-    <div class="Header">
-        <div align="right" class="HeadLogo">
-            <img height="70px" src="https://wkstest.thirvusoft.live/files/ricemill.jpg" width="100">
-        </div></div>
-          <div class="text">
-            <h1>TamilNadu Rice Mill Owner Association.</h1>
-          </div>
-          <style>
-            .print-format table, .print-format tr, 
+    .print-format table, .print-format tr, 
             .print-format td, .print-format div, .print-format p {
                 line-height: 150%;
                 vertical-align: middle;
@@ -47,37 +35,32 @@
                 .print-format {
                     width: 4in;
                     padding: 0.25in;
-                    min-height: 8in;
+                    min-height: 5in;
                 }
             }
-        </style>
+    
+    </style>
+    <div style="text-align:center;">
+        <div>
+                <img  height="150px" src="https://trmoa.thirvusoft.com/files/ricemill8260ae.jpg" width="150px">
+        </div>
         
-        <div class="text-center">
-            <h1>TamilNadu Rice Mill Owner Association.</h1>
-          </div>
         
-        <p class="text-center" style="margin-bottom: 1rem">
-        
-        </p>
-        <p>
+      
+      
+        <div style="text-align:center;">
             <b>{{ "Name" }}:</b> {{ doc.customer }}<br>
+            <b>{{ "Org " }}:</b> {{ doc.organization or '' }}<br>
+            <b>{{ "Registration Type" }}:</b> {{ doc.customer_group }}<br>
             <b>{{ "Mobile No" }}:</b> {{ doc.mobile_number }}<br>
-            <b>{{ "Area" }}:</b> {{ doc.taluk }}<br>
-            <b>{{ "Event Name" }}:</b> {{ doc.event }}<br>
-            
-        </p>
+            <b>{{ "District" }}:</b> {{ doc.district or '' }}<br>
+            <b>{{ "Taluk" }}:</b> {{ doc.taluk or '' }}<br>
+            <b>{{ "Event Name" }}:</b> {{ doc.event or '' }}<br>
+        </div>
         
-         <img src= {{ "https://trmoa.thirvusoft.com/"+ qr_url }} >
-        <style>
-         .center {
-          display: block;
-          margin-left: auto;
-          margin-right: auto;
-          width: 50%;
-        }
-        </style>
-        
-                   
-        
-        <p class="text-center">{{ "Thank you, please visit again." }}</p>
-            
+         <img src= {{ frappe.utils.get_url()+ doc.qr_url }} >
+     
+
+        <p>{{ "Thank you, please visit again." }}</p><br>
+        <p> Powered by Thirvusoft <img src="https://trmoa.thirvusoft.com/files/IMG_20220107_064752.png" height='15px' width='15px'></p>
+</div>

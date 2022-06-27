@@ -7,8 +7,6 @@ import io
 import os
 import http.client
 import json
-from frappe.utils import get_url
-from frappe.utils.data import now_datetime
 from pyqrcode import create as qr_create
 from frappe.utils.pdf import get_pdf
 
@@ -21,7 +19,7 @@ class MemberTracking(Document):
 		frappe.db.set_value(self.doctype, self.name, 'qr_url', qr_url)
 		frappe.db.commit()
 		path='visitor_management/visitor_management/doctype/member_tracking/membertrack.html'
-		html=frappe.render_template(path, {'doc': self,'qr_url':qr_url, 'letter_head': 'TRMOA'})
+		html=frappe.render_template(path, {'doc': frappe.get_doc('Member Tracking', self.name)})
 		file = frappe.get_doc({
 		"doctype": "File",
 		"file_name": f"{self.name}.pdf",
@@ -31,7 +29,8 @@ class MemberTracking(Document):
 		"attached_to_name": self.name
 	    }) 
 		file.save(ignore_permissions=True)
-		send_invoice(self.mobile_number,file.file_url,file.file_name)
+		send_invitation(self.mobile_number, self.event, self.customer)
+		send_invoice(self.mobile_number,file.file_url,file.file_name, self.customer)
 
 @frappe.whitelist()
 def create_qr_code(self, data):
@@ -52,7 +51,7 @@ def create_qr_code(self, data):
 	return _file.file_url
 
 @frappe.whitelist()
-def send_invoice(mobile_no, link,filename):
+def send_invoice(mobile_no, link,filename, cus_name):
 	if(link):
 		link=frappe.utils.get_url()+link
 		conn = http.client.HTTPSConnection("api.interakt.ai")
@@ -62,12 +61,12 @@ def send_invoice(mobile_no, link,filename):
 		"callbackData": "some text here",
 		"type": "Template",
 		"template": {
-		"name": "test",
+		"name": "registration_confirmation",
 		"languageCode": "en",
 		"headerValues": [ link ],
 		"fileName": filename,
 		"bodyValues": [
-			"body_variable_value"
+			cus_name
 		]
 		}
 	})
@@ -79,4 +78,34 @@ def send_invoice(mobile_no, link,filename):
 		conn.request("POST", "/v1/public/message/", payload, headers)
 		res = conn.getresponse()
 		data = res.read()
+		
+def send_invitation(mobile_no, event,cus_name):
+	for url in frappe.get_all('Event Messages', {'parent':event, 'send_this_document':1, 'file_attachment':['!=', '']}, pluck="file_attachment"):
+		link=url
+		if(link):
+			link='https://trmoa.thirvusoft.com'+link
+			conn = http.client.HTTPSConnection("api.interakt.ai")
+			payload = json.dumps({
+			"countryCode": "+91",
+			"phoneNumber": mobile_no,
+			"callbackData": "some text here",
+			"type": "Template",
+			"template": {
+			"name": "registration_confirmation",
+			"languageCode": "en",
+			"headerValues": [ link ],
+			"fileName": "Invitation.pdf",
+			"bodyValues": [
+				cus_name
+			]
+			}
+		})
+			headers = {
+			'Authorization': "Basic eHd0aHJaNUp6NjFvZF9qTFYwaml2YV9uSGdIbVR5ZFpad1JtYkREeng5czo=",
+			'Content-Type': 'application/json',
+			'Cookie': 'ApplicationGatewayAffinity=a8f6ae06c0b3046487ae2c0ab287e175; ApplicationGatewayAffinityCORS=a8f6ae06c0b3046487ae2c0ab287e175'
+		}
+			conn.request("POST", "/v1/public/message/", payload, headers)
+			res = conn.getresponse()
+			data = res.read()
 		
