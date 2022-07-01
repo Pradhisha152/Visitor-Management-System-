@@ -10,7 +10,7 @@
  "amount_based_on_field": 0,
  "apply_document_permissions": 0,
  "button_label": "",
- "client_script": "frappe.web_form.after_save = () => {\n    window.location.reload()\n}\n",
+ "client_script": "//whatsapp_number, from_webform=False, event='', are_you_attending_event='Yes', visitor_count=1\n\nfrappe.web_form.validate = () => {\n       frappe.call({\n\t\t\t\tmethod: \"visitor_management.visitor_management.custom.customer.duplicate_entry\",\n\t\t\t\targs: {\n\t\t\t\t\twhatsapp_number: frappe.web_form.fields_dict.whatsapp_number.value?frappe.web_form.fields_dict.whatsapp_number.value:'',\n\t\t\t\t\tfrom_webform:1,\n\t\t\t\t\tevent:frappe.web_form.fields_dict.event.value?frappe.web_form.fields_dict.event.value:'EV00002',\n\t\t\t\t\tare_you_attending_event:'Yes',\n\t\t\t\t\tvisitor_count:frappe.web_form.fields_dict.visitor_count.value?frappe.web_form.fields_dict.visitor_count.value:1\n\t\t\t\t\t\n\t\t\t\t},\n\t\t\t\tcallback: function(r){\n\t\t\t\t\tlet res=r.message\n\t\t\t\t    if(res){\n\t\t\t\t\t\tlocation.pathname=res['error']\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t})\n       return true\n}\nfrappe.web_form.after_save = () => {\n       location.pathname='regcomp'\n}\n",
  "creation": "2022-06-18 12:57:49.854392",
  "currency": "INR",
  "doc_type": "Customer",
@@ -22,7 +22,7 @@
  "is_standard": 1,
  "login_required": 0,
  "max_attachment_size": 0,
- "modified": "2022-06-27 18:04:23.389628",
+ "modified": "2022-06-30 20:53:56.637289",
  "modified_by": "Administrator",
  "module": "Visitor Management",
  "name": "get-data",
@@ -36,7 +36,7 @@
  "show_sidebar": 0,
  "sidebar_items": [],
  "success_message": "Successfully Registered and a registered document is sent to your whatsapp number.",
- "success_url": "https://trmoa.thirvusoft.com/event-registration?new=1",
+ "success_url": "https://trmoa.thirvusoft.com/regcomp",
  "title": "Event Registration",
  "web_form_fields": [
   {

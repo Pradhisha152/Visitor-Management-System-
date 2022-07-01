@@ -22,16 +22,31 @@
   "registration_time",
   "spot_registration",
   "spot_registration_time",
+  "tag_print_section",
   "print",
   "print_time",
+  "column_break_19",
+  "tag_print_count",
+  "event_check_inn_time_section",
   "event_checkin",
   "event_checkin_time",
+  "column_break_24",
+  "event_check_inn_count",
+  "hall_check_inn_section",
   "hall_checkin",
   "hall_checkin_time",
+  "column_break_29",
+  "hall_check_inn_count",
+  "dinning_check_inn_section",
   "dinning_check_inn",
   "dinning_check_inn_time",
+  "column_break_34",
+  "dinning_check_inn_count",
+  "event_check_out_section",
   "event_check_out",
-  "event_check_out_time"
+  "event_check_out_time",
+  "column_break_39",
+  "event_check_out_count"
  ],
  "fields": [
   {
@@ -45,6 +60,7 @@
   {
    "fieldname": "customer",
    "fieldtype": "Link",
+   "in_filter": 1,
    "in_list_view": 1,
    "label": "Customer",
    "options": "Customer",
@@ -74,7 +90,8 @@
   {
    "fieldname": "registration_time",
    "fieldtype": "Small Text",
-   "label": "Registration time"
+   "label": "Registration time",
+   "read_only": 1
   },
   {
    "default": "0",
@@ -85,7 +102,8 @@
   {
    "fieldname": "event_checkin_time",
    "fieldtype": "Small Text",
-   "label": "Event check-inn Time"
+   "label": "Event check inn Time",
+   "read_only": 1
   },
   {
    "default": "0",
@@ -96,7 +114,8 @@
   {
    "fieldname": "hall_checkin_time",
    "fieldtype": "Small Text",
-   "label": "Hall check-inn Time"
+   "label": "Hall check inn Time",
+   "read_only": 1
   },
   {
    "fetch_from": "customer.taluk",
@@ -115,6 +134,7 @@
    "default": "0",
    "fieldname": "registration",
    "fieldtype": "Check",
+   "in_filter": 1,
    "label": "Registration"
   },
   {
@@ -126,7 +146,8 @@
   {
    "fieldname": "dinning_check_inn_time",
    "fieldtype": "Small Text",
-   "label": "Dinning check-inn Time"
+   "label": "Dinning check-inn Time",
+   "read_only": 1
   },
   {
    "default": "0",
@@ -137,7 +158,8 @@
   {
    "fieldname": "event_check_out_time",
    "fieldtype": "Small Text",
-   "label": "Event check-out Time"
+   "label": "Event check-out Time",
+   "read_only": 1
   },
   {
    "default": "1",
@@ -162,18 +184,20 @@
   {
    "fieldname": "spot_registration_time",
    "fieldtype": "Small Text",
-   "label": "Spot Registration Time"
+   "label": "Spot Registration Time",
+   "read_only": 1
   },
   {
    "default": "0",
    "fieldname": "print",
    "fieldtype": "Check",
-   "label": "Tag Print"
+   "label": "Tag Issue"
   },
   {
    "fieldname": "print_time",
    "fieldtype": "Small Text",
-   "label": "Tag Print Time"
+   "label": "Tag Issue Time",
+   "read_only": 1
   },
   {
    "fetch_from": "customer.district",
@@ -188,11 +212,87 @@
    "fieldtype": "Data",
    "label": "Organization",
    "read_only": 1
+  },
+  {
+   "fieldname": "tag_print_section",
+   "fieldtype": "Section Break",
+   "label": "Tag Issue"
+  },
+  {
+   "fieldname": "hall_check_inn_section",
+   "fieldtype": "Section Break",
+   "label": " Hall check inn"
+  },
+  {
+   "fieldname": "dinning_check_inn_section",
+   "fieldtype": "Section Break",
+   "label": "Dinning check inn"
+  },
+  {
+   "fieldname": "event_check_out_section",
+   "fieldtype": "Section Break",
+   "label": " Event check out"
+  },
+  {
+   "fieldname": "event_check_inn_time_section",
+   "fieldtype": "Section Break",
+   "label": "Event check inn Time"
+  },
+  {
+   "fieldname": "tag_print_count",
+   "fieldtype": "Data",
+   "in_filter": 1,
+   "label": " Tag Issue Count",
+   "read_only": 1
+  },
+  {
+   "fieldname": "event_check_inn_count",
+   "fieldtype": "Data",
+   "label": "Event check inn Count",
+   "read_only": 1
+  },
+  {
+   "fieldname": "hall_check_inn_count",
+   "fieldtype": "Data",
+   "label": " Hall check inn Count",
+   "read_only": 1
+  },
+  {
+   "fieldname": "dinning_check_inn_count",
+   "fieldtype": "Data",
+   "label": " Dinning check inn Count",
+   "read_only": 1
+  },
+  {
+   "fieldname": "event_check_out_count",
+   "fieldtype": "Data",
+   "label": "Event check out Count",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_19",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_24",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_29",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_34",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_39",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-06-23 19:45:27.562654",
+ "modified": "2022-06-30 12:40:17.600025",
  "modified_by": "Administrator",
  "module": "Visitor Management",
  "name": "Member Tracking",

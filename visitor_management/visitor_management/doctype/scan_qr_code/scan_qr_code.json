@@ -8,6 +8,8 @@
  "field_order": [
   "scan_qr",
   "column_break_2",
+  "mobile_number",
+  "visitor_count",
   "open_print_after_scan",
   "entry_type_section",
   "checkin",
@@ -75,12 +77,25 @@
    "fieldname": "open_print_after_scan",
    "fieldtype": "Check",
    "label": "Open Print After Scan"
+  },
+  {
+   "fieldname": "mobile_number",
+   "fieldtype": "Link",
+   "label": "Mobile Number",
+   "options": "Member Tracking"
+  },
+  {
+   "default": "1",
+   "fetch_from": "mobile_number.count",
+   "fieldname": "visitor_count",
+   "fieldtype": "Data",
+   "label": "Visitor Count"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2022-06-23 12:53:51.305846",
+ "modified": "2022-06-30 14:27:22.514232",
  "modified_by": "Administrator",
  "module": "Visitor Management",
  "name": "Scan Qr code",

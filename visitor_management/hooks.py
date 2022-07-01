@@ -97,9 +97,8 @@ doctype_js = {"Customer" : "visitor_management/js/customer.js"}
 
 doc_events = {
 	"Customer": {
-		"before_naming": "visitor_management.visitor_management.custom.customer.validate_entry",
-		"after_insert": "visitor_management.visitor_management.custom.customer.after_save",
-		"validate":"visitor_management.visitor_management.custom.customer.validate_phone"
+		"before_insert": "visitor_management.visitor_management.custom.customer.validate_entry",
+		"after_insert": "visitor_management.visitor_management.custom.customer.after_save"
 	},
 	"POS Invoice": {
 		'on_submit':'visitor_management.visitor_management.py.pos_invoice.update_cusomer_group',

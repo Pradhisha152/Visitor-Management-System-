@@ -241,7 +241,7 @@
    "property": "search_fields",
    "property_type": "Data",
    "row_name": null,
-   "value": "subject,location,starts_on"
+   "value": "subject,starts_on"
   },
   {
    "_assign": null,

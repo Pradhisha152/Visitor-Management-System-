@@ -11,6 +11,9 @@ from pyqrcode import create as qr_create
 from frappe.utils.pdf import get_pdf
 
 class MemberTracking(Document):
+	def before_naming(doc):
+		if(doc.event+'-'+doc.mobile_number in frappe.get_all('Member Tracking',pluck='name')):
+			raise frappe.exceptions.DuplicateEntryError('name already exist')
 	def after_insert(self):
 		customer_group=frappe.get_all('Customer', {'whatsapp_number': self.mobile_number}, pluck="customer_group")
 		org_name=frappe.get_value('Customer', self.customer, 'organization_name') or ''

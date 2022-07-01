@@ -7,9 +7,12 @@
  "engine": "InnoDB",
  "field_order": [
   "mobile_number",
-  "visitor_count",
+  "membership",
+  "count",
   "column_break_3",
-  "membership"
+  "scan_qr",
+  "visitor_count",
+  "go_to_print"
  ],
  "fields": [
   {
@@ -19,11 +22,11 @@
    "options": "Member Tracking"
   },
   {
-   "default": "1",
    "fetch_from": "mobile_number.count",
    "fieldname": "visitor_count",
    "fieldtype": "Int",
-   "label": "Visitor Count"
+   "label": "Register Count",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_3",
@@ -35,12 +38,31 @@
    "fieldtype": "Data",
    "label": "Membership",
    "read_only": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "count",
+   "fieldtype": "Select",
+   "label": "Count",
+   "options": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10"
+  },
+  {
+   "fieldname": "scan_qr",
+   "fieldtype": "Data",
+   "label": "Scan QR",
+   "options": "Barcode"
+  },
+  {
+   "default": "0",
+   "fieldname": "go_to_print",
+   "fieldtype": "Check",
+   "label": "Go to print after issue"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2022-06-22 23:03:02.649337",
+ "modified": "2022-06-30 20:46:53.440145",
  "modified_by": "Administrator",
  "module": "Visitor Management",
  "name": "PDF Print",

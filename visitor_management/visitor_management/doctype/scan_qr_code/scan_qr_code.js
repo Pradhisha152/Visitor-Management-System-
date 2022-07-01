@@ -4,6 +4,54 @@
 frappe.ui.form.on('Scan Qr code', {
 	refresh: function(frm) {
 		frm.disable_save()
+		frm.add_custom_button('Issue', function(){
+			let checkin=frm.doc.checkin
+			let checkout=frm.doc.checkout
+			let dinningin=frm.doc.dinningin
+			let hallcheckin=frm.doc.hall_check_in
+			let open_print=frm.doc.open_print_after_scan
+			let entry_type=checkin?'Check In':(checkout?'Check Out':(dinningin?'Dinning Check-in':(hallcheckin?'Hall Check-in':(open_print?'Open Print':0))))
+			if(frm.doc.mobile_number && frm.doc.visitor_count && entry_type){
+					frappe.call({
+						method:"visitor_management.visitor_management.doctype.pdf_print.pdf_print.pdf_print",
+						args:{
+							name: frm.doc.mobile_number,
+							count: frm.doc.visitor_count?frm.doc.visitor_count:1,
+							ts_from: 'scan_qr',
+							entry_type: entry_type
+						},
+						callback: function(r){
+							frappe.show_alert({'message': r.message.msg,'indicator': r.message.colour})
+							if(frm.doc.open_print_after_scan)
+							{
+								let res=r.message.doc
+								let url=frappe.urllib.get_full_url(
+									'/api/method/frappe.utils.print_format.download_pdf?' +
+										'doctype=' +
+										encodeURIComponent(res.doctype) +
+										'&name=' +
+										encodeURIComponent(res.name) +
+										'&trigger_print=1' +
+										'&format=' +
+										encodeURIComponent('TRMAO') +
+										'&no_letterhead=' + '1' +
+										'&letterhead=' +
+										encodeURIComponent("TRMOA") 
+								)							
+								
+								let w = window.open(url);
+								if (!w) {
+									frappe.msgprint(__('Please enable pop-ups'));
+									return;
+								}
+							}
+						}
+					})
+			}
+			else{
+				frappe.show_alert({'message':'Please enter Mobile Number and Visitor Count and Entry Type','indicator':'red'},1.5)
+			}
+		}).addClass("btn-primary");
 		cur_frm.fields_dict.checkin.$input.on("click", function() {
 			frm.set_value('checkout', 0)
 			frm.set_value('dinningin', 0)
@@ -38,7 +86,8 @@ frappe.ui.form.on('Scan Qr code', {
 					method: "visitor_management.visitor_management.doctype.scan_qr_code.scan_qr_code.scan_qr_code",
 					args:{
 						data: frm.doc.scan_qr,
-						entry_type: entry_type
+						entry_type: entry_type,
+						count: 1
 					},
 					callback: function(r){
 						frm.set_value('scan_qr','')
