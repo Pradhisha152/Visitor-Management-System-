@@ -1,0 +1,92 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2022-08-01 12:46:28.978612",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "name1",
+  "contact_det",
+  "contact_email",
+  "mob_num",
+  "participants_detials",
+  "no_of_participants",
+  "per_detials",
+  "gender",
+  "age"
+ ],
+ "fields": [
+  {
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "age",
+   "fieldtype": "Data",
+   "label": "Age"
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Select",
+   "label": "Gender",
+   "options": "Male\nFemale\nOthers"
+  },
+  {
+   "fieldname": "contact_det",
+   "fieldtype": "Section Break",
+   "label": "contact Detials"
+  },
+  {
+   "fieldname": "participants_detials",
+   "fieldtype": "Section Break",
+   "label": "Participants detials"
+  },
+  {
+   "fieldname": "mob_num",
+   "fieldtype": "Data",
+   "label": "Mobile Number"
+  },
+  {
+   "fieldname": "per_detials",
+   "fieldtype": "Section Break",
+   "label": "Personal Detials"
+  },
+  {
+   "fieldname": "contact_email",
+   "fieldtype": "Data",
+   "label": "contact email"
+  },
+  {
+   "fieldname": "no_of_participants",
+   "fieldtype": "Data",
+   "label": "No of participants"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-08-01 13:39:11.877174",
+ "modified_by": "Administrator",
+ "module": "visitor_management",
+ "name": "Registration Form",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}
