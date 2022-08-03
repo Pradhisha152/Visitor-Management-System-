@@ -13,13 +13,13 @@
    "fieldname": "registration_id",
    "fieldtype": "Link",
    "label": "Registration Id",
-   "options": "Registration F1"
+   "options": "Registration Form"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2022-08-02 15:46:31.858742",
+ "modified": "2022-08-03 12:18:26.288304",
  "modified_by": "Administrator",
  "module": "Visitor Management",
  "name": "Ev1 List",

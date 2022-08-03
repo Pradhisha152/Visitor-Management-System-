@@ -2,7 +2,7 @@ frappe.ui.form.on("Lucky Draw",{
     onload: function(frm, cdt, cdn) {
     var item = locals[cdt][cdn];
     var count = item.count;
-    console.log('ooo')
+    
     frappe.call({
         method: 'visitor_management.visitor_management.py.luc_draw.random_pick',
         args: {count},

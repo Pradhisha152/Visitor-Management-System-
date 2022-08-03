@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "naming_series: ",
  "creation": "2022-08-02 09:55:26.649601",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -8,8 +9,10 @@
  "field_order": [
   "event_name",
   "count",
+  "winners_button",
   "winners",
-  "amended_from"
+  "amended_from",
+  "naming_series"
  ],
  "fields": [
   {
@@ -29,7 +32,7 @@
   {
    "fieldname": "winners",
    "fieldtype": "Table",
-   "label": "Winners list",
+   "label": "Winners Details",
    "options": "Ev1 List"
   },
   {
@@ -40,11 +43,27 @@
    "options": "Lucky Draw",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "winners_button",
+   "fieldtype": "Button",
+   "label": "Click to Get Winners"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "no_copy": 1,
+   "options": "LUC-DRA-.YYYY.-",
+   "print_hide": 1,
+   "reqd": 1,
+   "set_only_once": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2022-08-03 10:15:22.740238",
+ "modified": "2022-08-03 18:14:25.410348",
  "modified_by": "Administrator",
  "module": "visitor_management",
  "name": "Lucky Draw",
@@ -64,5 +83,6 @@
   }
  ],
  "sort_field": "modified",
- "sort_order": "DESC"
+ "sort_order": "DESC",
+ "track_changes": 1
 }
