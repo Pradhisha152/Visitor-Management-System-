@@ -4,5 +4,5 @@
 # import frappe
 import unittest
 
-class TestRegistrationForm(unittest.TestCase):
+class TestRegistrationF1(unittest.TestCase):
 	pass

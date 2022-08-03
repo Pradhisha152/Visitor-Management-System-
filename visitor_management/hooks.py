@@ -109,6 +109,9 @@ doc_events = {
 	},
 	"Address": {
 		'autoname': "visitor_management.visitor_management.py.autoname.autoname"
+	},
+	"Registration F1" :{
+		"validate":"visitor_management.visitor_management.py.default.validate_phone"
 	}
 }
 

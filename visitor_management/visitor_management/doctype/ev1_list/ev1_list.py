@@ -4,5 +4,5 @@
 # import frappe
 from frappe.model.document import Document
 
-class RegistrationForm(Document):
+class Ev1List(Document):
 	pass
