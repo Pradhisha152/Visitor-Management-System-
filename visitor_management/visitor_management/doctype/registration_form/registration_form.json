@@ -16,7 +16,8 @@
   "participants_details",
   "no_of_participants",
   "winner",
-  "naming_series"
+  "naming_series",
+  "registration_fee"
  ],
  "fields": [
   {
@@ -42,6 +43,7 @@
    "fieldname": "contact_email",
    "fieldtype": "Data",
    "label": "Contact Email",
+   "options": "Email",
    "reqd": 1
   },
   {
@@ -87,10 +89,16 @@
    "print_hide": 1,
    "reqd": 1,
    "set_only_once": 1
+  },
+  {
+   "fieldname": "registration_fee",
+   "fieldtype": "Currency",
+   "label": "Registration Fee",
+   "options": "paid_fess"
   }
  ],
  "links": [],
- "modified": "2022-08-03 18:12:33.255977",
+ "modified": "2022-08-05 13:04:48.363541",
  "modified_by": "Administrator",
  "module": "Visitor Management",
  "name": "Registration Form",

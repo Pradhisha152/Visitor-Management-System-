@@ -57,7 +57,7 @@ doctype_js = {"Customer" : "visitor_management/js/customer.js"}
 # ------------
 
 # before_install = "visitor_management.install.before_install"
-# after_install = "visitor_management.install.after_install"
+# after_install = visitor_management.visitor_management.py.integration_request.
 
 # Uninstallation
 # ------------
@@ -110,8 +110,11 @@ doc_events = {
 	"Address": {
 		'autoname': "visitor_management.visitor_management.py.autoname.autoname"
 	},
-	"Registration F1" :{
+	"Registration Form" :{
 		"validate":"visitor_management.visitor_management.py.default.validate_phone"
+	},
+	"Integration Request" :{
+		"validate":"visitor_management.visitor_management.py.integration_request.validate"
 	}
 }
 

@@ -16,9 +16,6 @@ def random_pick(cnt,evn):
 		frappe.db.set_value("Registration Form",registered_list[lucky_num],"winner",1)
 		winners.append(registered_list[lucky_num])
 		registered_list.remove(registered_list[lucky_num])
-
-	
-	
 	return winners 
 
    
